@@ -8,20 +8,26 @@ import {PostPage} from "../pages/post-page";
 
 export const App: FC = () => {
     return (
-        <Container>
+        <AppContainer>
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/post" element={<PostPage />} />
+                <Route path="/posts/:id" element={<PostPage />} />
                 <Route
                     path="*"
-                    element={<h3 className="center-align">This page does not exist</h3>}
+                    element={<h3>This page does not exist</h3>}
                 />
             </Routes>
-        </Container>
+        </AppContainer>
     );
 };
 
-const Container = styled.div`
-    padding: 0 100px;
+const AppContainer = styled.div`
+  padding: 0 100px;
+  @media (max-width: 768px) {
+    padding: 0 50px;
+  };
+  @media (max-width: 425px) {
+    padding: 0;
+  };
 `;
 

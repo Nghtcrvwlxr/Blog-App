@@ -11,7 +11,6 @@ const initialState: BlogState = {
         {id: 5, title: "Sample Title 5", content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid doloribus labore perspiciatis repudiandae voluptates. Accusamus aperiam, asperiores aut, dolore, dolorem ducimus eligendi excepturi labore laudantium nulla placeat quibusdam quod voluptas."},
         {id: 6, title: "Sample Title 6", content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid doloribus labore perspiciatis repudiandae voluptates. Accusamus aperiam, asperiores aut, dolore, dolorem ducimus eligendi excepturi labore laudantium nulla placeat quibusdam quod voluptas."},
     ],
-    selectedPost: null,
     createWindowOpen: false,
     confirmWindowOpen: false,
 };
@@ -46,24 +45,21 @@ const blogSlice = createSlice({
                 return item.id !== action.payload;
             });
         },
-        selectPost(state, action: PayloadAction<number>) {
-            const item = state.data.find((item) => item.id === action.payload);
-            if(item) {
-                state.selectedPost = item;
+        toggleModal(state, action: PayloadAction<string>) {
+            switch (action.payload) {
+                case "create":
+                    state.createWindowOpen = !state.createWindowOpen;
+                    break;
+                case "confirm":
+                    state.confirmWindowOpen = !state.confirmWindowOpen;
+                    break;
+                default:
+                    break;
             }
-        },
-        clearSelectedPost(state) {
-            state.selectedPost = null;
-        },
-        toggleCreateModal(state) {
-            state.createWindowOpen = !state.createWindowOpen;
-        },
-        toggleConfirmModal(state) {
-            state.confirmWindowOpen = !state.confirmWindowOpen;
         },
     },
 });
 
 export const { reducer: blogReducer } = blogSlice;
 
-export const {addPost, updatePost, deletePost, selectPost, clearSelectedPost, toggleCreateModal, toggleConfirmModal} = blogSlice.actions;
+export const {addPost, updatePost, deletePost, toggleModal} = blogSlice.actions;

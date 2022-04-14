@@ -1,6 +1,5 @@
 export interface BlogState {
     data: BlogItem[];
-    selectedPost: null | BlogItem;
     createWindowOpen: boolean;
     confirmWindowOpen: boolean;
 }

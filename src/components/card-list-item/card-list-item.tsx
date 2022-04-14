@@ -3,9 +3,6 @@ import {Link} from "react-router-dom";
 
 import styled from "styled-components";
 
-import {useTypedDispatch} from "../../store/utils";
-import {selectPost} from "../../store/slices/blog-slice";
-
 interface CardListItemProps {
     id: number;
     title: string;
@@ -13,15 +10,13 @@ interface CardListItemProps {
 }
 
 export const CardListItem: FC<CardListItemProps> = ({id, title, content}) => {
-    const dispatch = useTypedDispatch();
-
     return (
         <Card>
             <CardTitle>{title}</CardTitle>
             <CardBody>
-                <span>{content}</span>
+                <p>{content}</p>
             </CardBody>
-            <SelectButton to="/post" onClick={() => dispatch(selectPost(id))}>
+            <SelectButton to={`/posts/${id}`}>
                 view post
             </SelectButton>
         </Card>
@@ -32,10 +27,22 @@ const Card = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   box-sizing: border-box;
   list-style-type: none;
+  @media (max-width: 1440px) {
+    width: 250px;
+    height: 250px;
+  };
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 200px;
+  };
+  @media (max-width: 576px) {
+    width: 250px;
+    height: 250px;
+  };
 `;
 
 const CardTitle = styled.h3`
@@ -48,7 +55,7 @@ const CardTitle = styled.h3`
 
 const CardBody = styled.div`
   box-sizing: border-box;
-  width: 300px;
+  width: 100%;
   padding: 1rem;
   background-color: white;
   border: 1px solid black;
