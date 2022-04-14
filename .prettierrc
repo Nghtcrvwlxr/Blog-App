@@ -1,0 +1,19 @@
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "eslintIntegration": true,
+  "importOrder": [
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^@ui/(.*)$",
+    "^[./].*(?<!\\.(c|le|sc)ss)$", "\\.(c|le|sc)ss$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": false
+}

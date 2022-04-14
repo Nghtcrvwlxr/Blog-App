@@ -1,20 +1,27 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styled from "styled-components";
 
+type ClickFunction = () => void;
+
 interface AppButtonProps {
-    form?: string;
-    className?: string;
-    onClick?: any;
-    children: string;
+  form?: string;
+  className?: string;
+  onClickFn?: ClickFunction;
+  children?: string;
 }
 
-export const Button: FC<AppButtonProps> = ({form, className, onClick, children}) => {
-    return (
-        <AppButton form={form} className={className} onClick={onClick}>
-            {children}
-        </AppButton>
-    );
+export const Button: FC<AppButtonProps> = ({
+  form,
+  className,
+  onClickFn,
+  children,
+}) => {
+  return (
+    <AppButton form={form} className={className} onClick={onClickFn}>
+      {children}
+    </AppButton>
+  );
 };
 
 const AppButton = styled.button`

@@ -1,26 +1,24 @@
 import React, { FC } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
 interface CardListItemProps {
-    id: number;
-    title: string;
-    content: string;
+  id: number;
+  title: string;
+  content: string;
 }
 
-export const CardListItem: FC<CardListItemProps> = ({id, title, content}) => {
-    return (
-        <Card>
-            <CardTitle>{title}</CardTitle>
-            <CardBody>
-                <p>{content}</p>
-            </CardBody>
-            <SelectButton to={`/posts/${id}`}>
-                view post
-            </SelectButton>
-        </Card>
-    );
+export const CardListItem: FC<CardListItemProps> = ({ id, title, content }) => {
+  return (
+    <Card>
+      <CardTitle>{title}</CardTitle>
+      <CardBody>
+        <p>{content}</p>
+      </CardBody>
+      <SelectButton to={`/posts/${id}`}>view post</SelectButton>
+    </Card>
+  );
 };
 
 const Card = styled.li`
@@ -34,15 +32,15 @@ const Card = styled.li`
   @media (max-width: 1440px) {
     width: 250px;
     height: 250px;
-  };
+  }
   @media (max-width: 768px) {
     width: 200px;
     height: 200px;
-  };
+  }
   @media (max-width: 576px) {
     width: 250px;
     height: 250px;
-  };
+  }
 `;
 
 const CardTitle = styled.h3`

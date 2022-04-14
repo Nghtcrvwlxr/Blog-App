@@ -1,18 +1,17 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
 import styled from "styled-components";
 
 interface ModalWindowProps {
-    className?: string;
-    children: React.ReactNode;
+  className?: string;
+  children: React.ReactNode;
 }
 
-export const ModalWindow: FC<ModalWindowProps> = ({className, children}) => {
-    return (
-        <Window className={className}>
-            {children}
-        </Window>
-    );
+export const ModalWindow: FC<ModalWindowProps> = ({
+  className = "",
+  children,
+}) => {
+  return <Window className={className}>{children}</Window>;
 };
 
 const Window = styled.div`

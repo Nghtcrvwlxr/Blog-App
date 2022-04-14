@@ -1,28 +1,26 @@
-import React, {FC} from 'react';
+import React, { FC } from "react";
 
 import styled from "styled-components";
 
-import {useTypedDispatch} from "../../store/utils";
-import {toggleModal} from "../../store/slices/blog-slice";
-
-import {CardList} from "../card-list/card-list";
-import {CreatePostWindow} from "../modal-windows/create-post-window/create-post-window";
+import { toggleModal } from "../../store/slices/blog-slice";
+import { useTypedDispatch } from "../../store/utils";
+import { CardList } from "../card-list/card-list";
+import { CreatePostWindow } from "../modal-windows/create-post-window/create-post-window";
 
 export const MainPage: FC = () => {
-    const dispatch = useTypedDispatch();
+  const dispatch = useTypedDispatch();
 
-    return (
-        <>
-            <AppTitle>Blog App</AppTitle>
-            <CardList />
-            <AddButton onClick={() => dispatch(toggleModal("create"))}>
-                + add
-            </AddButton>
-            <CreatePostWindow />
-        </>
-    );
+  return (
+    <>
+      <AppTitle>Blog App</AppTitle>
+      <CardList />
+      <AddButton onClick={() => dispatch(toggleModal("create"))}>
+        + add
+      </AddButton>
+      <CreatePostWindow />
+    </>
+  );
 };
-
 
 const AppTitle = styled.h1`
   font-family: Roboto, serif;
@@ -31,7 +29,7 @@ const AppTitle = styled.h1`
   margin-top: 3rem;
   @media (max-width: 768px) {
     font-size: 36px;
-  };
+  } ;
 `;
 
 const AddButton = styled.button`
@@ -53,5 +51,5 @@ const AddButton = styled.button`
     width: 75px;
     height: 75px;
     border-radius: 100%;
-  };
+  }
 `;

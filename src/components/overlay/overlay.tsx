@@ -1,18 +1,19 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import styled from "styled-components";
 
-import {useTypedDispatch} from "../../store/utils";
+import { useTypedDispatch } from "../../store/utils";
 
 interface AppOverlayProps {
-    onClickFn: Function;
-    modalType: string;
+  onClickFn: ActionCreatorWithPayload<string>;
+  modalType: string;
 }
 
-export const Overlay: FC<AppOverlayProps> = ({onClickFn, modalType}) => {
-    const dispatch = useTypedDispatch();
+export const Overlay: FC<AppOverlayProps> = ({ onClickFn, modalType }) => {
+  const dispatch = useTypedDispatch();
 
-    return <AppOverlay onClick={() => dispatch(onClickFn(modalType))} />;
+  return <AppOverlay onClick={() => dispatch(onClickFn(modalType))} />;
 };
 
 const AppOverlay = styled.div`

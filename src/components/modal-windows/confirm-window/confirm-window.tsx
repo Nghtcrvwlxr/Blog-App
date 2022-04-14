@@ -1,48 +1,52 @@
-import React, {FC} from 'react';
-import {useNavigate} from "react-router-dom";
+import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
-import {useTypedDispatch, useTypedSelector} from "../../../store/utils";
-import {deletePost, toggleModal} from "../../../store/slices/blog-slice";
-
-import {ModalWindow} from "../modal-window";
-import {Overlay} from "../../overlay/overlay";
-import {Button} from "../../buttons/button";
-
-import {BlogItem} from "../../../utils/types";
+import { deletePost, toggleModal } from "../../../store/slices/blog-slice";
+import { useTypedDispatch, useTypedSelector } from "../../../store/utils";
+import { BlogItem } from "../../../utils/types";
+import { Button } from "../../buttons/button";
+import { Overlay } from "../../overlay/overlay";
+import { ModalWindow } from "../modal-window";
 
 interface ConfirmWindowProps {
-    post: BlogItem;
+  post: BlogItem;
 }
 
-export const ConfirmWindow: FC<ConfirmWindowProps> = ({post}) => {
-    const dispatch = useTypedDispatch();
-    const isShown = useTypedSelector(state => state.blogReducer.confirmWindowOpen);
+export const ConfirmWindow: FC<ConfirmWindowProps> = ({ post }) => {
+  const dispatch = useTypedDispatch();
+  const isShown = useTypedSelector(
+    (state) => state.blogReducer.confirmWindowOpen
+  );
 
-    let navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const onDelete = () => {
-        dispatch(deletePost(post.id));
-        dispatch(toggleModal("confirm"));
-        navigate("/");
-    };
+  const onDelete = () => {
+    dispatch(deletePost(post.id));
+    dispatch(toggleModal("confirm"));
+    navigate("/");
+  };
 
-    if(!isShown) {
-        return null;
-    }
-    return (
-        <>
-            <Overlay modalType={"confirm"} onClickFn={toggleModal} />
-            <ModalWindow>
-                <ModalWindowTitle>Are you sure you want to delete this post?</ModalWindowTitle>
-                <ButtonsWrapper>
-                    <DeclineButton onClick={() => dispatch(toggleModal("confirm"))}>No</DeclineButton>
-                    <ConfirmButton onClick={() => onDelete()}>Yes</ConfirmButton>
-                </ButtonsWrapper>
-            </ModalWindow>
-        </>
-    );
+  if (!isShown) {
+    return null;
+  }
+  return (
+    <>
+      <Overlay modalType="confirm" onClickFn={toggleModal} />
+      <ModalWindow>
+        <ModalWindowTitle>
+          Are you sure you want to delete this post?
+        </ModalWindowTitle>
+        <ButtonsWrapper>
+          <DeclineButton onClickFn={() => dispatch(toggleModal("confirm"))}>
+            No
+          </DeclineButton>
+          <ConfirmButton onClickFn={() => onDelete()}>Yes</ConfirmButton>
+        </ButtonsWrapper>
+      </ModalWindow>
+    </>
+  );
 };
 
 const ModalWindowTitle = styled.h4`
@@ -59,7 +63,7 @@ const ButtonsWrapper = styled.div`
 const ModalButton = styled(Button)`
   @media (max-width: 425px) {
     width: 100px;
-  };
+  }
 `;
 
 const ConfirmButton = styled(ModalButton)`

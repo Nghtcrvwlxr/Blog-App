@@ -1,7 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 import { sortObjKeysAlphabetically } from "../utils/sort-object-keys";
-
 import { blogReducer } from "./slices/blog-slice";
 
 const reducers = { blogReducer };

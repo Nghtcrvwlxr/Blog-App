@@ -1,44 +1,47 @@
-import React, {FC} from 'react';
-import {useNavigate} from "react-router-dom";
+import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
-import {useTypedDispatch} from "../../store/utils";
-import {toggleModal, updatePost} from "../../store/slices/blog-slice";
-
-import {ConfirmWindow} from "../modal-windows/confirm-window/confirm-window";
-import {Button} from "../buttons/button";
-import {Form} from "../form/form";
-
-import {BlogItem} from "../../utils/types";
+import { toggleModal, updatePost } from "../../store/slices/blog-slice";
+import { useTypedDispatch } from "../../store/utils";
+import { BlogItem } from "../../utils/types";
+import { Button } from "../buttons/button";
+import { Form } from "../form/form";
+import { ConfirmWindow } from "../modal-windows/confirm-window/confirm-window";
 
 interface PostDetailsProps {
-    post: BlogItem;
+  post: BlogItem;
 }
 
-export const PostDetails: FC<PostDetailsProps> = ({post}) => {
-    const dispatch = useTypedDispatch();
-    let navigate = useNavigate();
+export const PostDetails: FC<PostDetailsProps> = ({ post }) => {
+  const dispatch = useTypedDispatch();
+  const navigate = useNavigate();
 
-    const onFormSubmit = (title: string, content: string) => {
-        dispatch(updatePost({id: post.id, title: title, content: content}));
-        navigate("/");
-    };
-    const onDelete = () => {
-        dispatch(toggleModal("confirm"));
-    };
+  const onFormSubmit = (title: string, content: string) => {
+    dispatch(updatePost({ id: post.id, title, content }));
+    navigate("/");
+  };
+  const onDelete = () => {
+    dispatch(toggleModal("confirm"));
+  };
 
-    return (
-        <>
-            <PostTitle>Post: {post.title}</PostTitle>
-            <PostEditForm id={"change-form"} initialTitle={post.title} initialContent={post.content} onSubmitFn={onFormSubmit} />
-            <ButtonsWrapper>
-                <RemoveButton onClick={() => onDelete()}>Remove</RemoveButton>
-                <SaveButton form="change-form">Save</SaveButton>
-            </ButtonsWrapper>
-            <ConfirmWindow post={post} />
-        </>
-    );
+  return (
+    <>
+      <PostTitle>Post: {post.title}</PostTitle>
+      <PostEditForm
+        id="change-form"
+        initialTitle={post.title}
+        initialContent={post.content}
+        onSubmitFn={onFormSubmit}
+      />
+      <ButtonsWrapper>
+        <RemoveButton onClickFn={() => onDelete()}>Remove</RemoveButton>
+        <SaveButton form="change-form">Save</SaveButton>
+      </ButtonsWrapper>
+      <ConfirmWindow post={post} />
+    </>
+  );
 };
 
 const PostTitle = styled.h3`
@@ -48,7 +51,7 @@ const PostTitle = styled.h3`
   font-weight: 700;
   @media (max-width: 768px) {
     margin-top: 1rem;
-  };
+  }
 `;
 
 const PostEditForm = styled(Form)`
@@ -66,11 +69,11 @@ const FormButton = styled(Button)`
   @media (max-width: 768px) {
     width: 150px;
     height: 40px;
-  };
+  }
   @media (max-width: 425px) {
     width: 100px;
     height: 40px;
-  };
+  }
 `;
 
 const RemoveButton = styled(FormButton)`
