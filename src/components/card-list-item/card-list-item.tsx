@@ -29,6 +29,10 @@ const Card = styled.li`
   height: 350px;
   box-sizing: border-box;
   list-style-type: none;
+  @media (min-width: 1441px) {
+    width: 375px;
+    height: 375px;
+  }
   @media (max-width: 1440px) {
     width: 250px;
     height: 250px;
@@ -47,8 +51,11 @@ const CardTitle = styled.h3`
   text-align: center;
   margin: 0;
   font-family: Roboto, serif;
+  height: 25px;
   font-size: 16px;
+  line-height: 18px;
   font-weight: 700;
+  overflow: hidden;
 `;
 
 const CardBody = styled.div`

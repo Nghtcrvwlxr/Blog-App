@@ -1,7 +1,7 @@
-export interface BlogState {
+export interface BlogState extends Record<string, any> {
   data: BlogItem[];
-  createWindowOpen: boolean;
-  confirmWindowOpen: boolean;
+  createWindowVisible: boolean;
+  confirmWindowVisible: boolean;
 }
 
 export interface BlogItem {

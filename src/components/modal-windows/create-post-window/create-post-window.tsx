@@ -12,21 +12,21 @@ import { ModalWindow } from "../modal-window";
 export const CreatePostWindow: FC = () => {
   const dispatch = useTypedDispatch();
   const isShown = useTypedSelector(
-    (state) => state.blogReducer.createWindowOpen
+    (state) => state.blogReducer.createWindowVisible
   );
 
   const onFormSubmit = (title: string, content: string) => {
     dispatch(addPost({ title, content }));
-    dispatch(toggleModal("create"));
+    dispatch(toggleModal("createWindowVisible"));
   };
-  const onDelete = () => {
-    dispatch(toggleModal("create"));
+  const onClose = () => {
+    dispatch(toggleModal("createWindowVisible"));
   };
 
   if (isShown) {
     return (
       <>
-        <Overlay onClickFn={toggleModal} modalType="create" />
+        <Overlay onClickFn={toggleModal} modalType="createWindowVisible" />
         <CreatePostModalWindow>
           <ModalWindowTitle>Create new post</ModalWindowTitle>
           <PostAddForm
@@ -36,7 +36,7 @@ export const CreatePostWindow: FC = () => {
             onSubmitFn={onFormSubmit}
           />
           <ButtonsWrapper>
-            <CloseButton onClickFn={() => onDelete()}>Close</CloseButton>
+            <CloseButton onClickFn={onClose}>Close</CloseButton>
             <AddButton form="add-form">Add</AddButton>
           </ButtonsWrapper>
         </CreatePostModalWindow>

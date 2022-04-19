@@ -19,8 +19,17 @@ export const App: FC = () => {
 };
 
 const AppContainer = styled.div`
-  padding: 0 100px;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 0 110px;
+  @media (max-width: 1440px) {
+    max-width: 1000px;
+  }
+  @media (max-width: 1024px) {
+    max-width: 650px;
+  }
   @media (max-width: 768px) {
+    max-width: 500px;
     padding: 0 50px;
   }
   @media (max-width: 425px) {

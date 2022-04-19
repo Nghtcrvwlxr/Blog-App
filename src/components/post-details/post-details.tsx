@@ -23,7 +23,7 @@ export const PostDetails: FC<PostDetailsProps> = ({ post }) => {
     navigate("/");
   };
   const onDelete = () => {
-    dispatch(toggleModal("confirm"));
+    dispatch(toggleModal("confirmWindowVisible"));
   };
 
   return (
@@ -36,7 +36,7 @@ export const PostDetails: FC<PostDetailsProps> = ({ post }) => {
         onSubmitFn={onFormSubmit}
       />
       <ButtonsWrapper>
-        <RemoveButton onClickFn={() => onDelete()}>Remove</RemoveButton>
+        <RemoveButton onClickFn={onDelete}>Remove</RemoveButton>
         <SaveButton form="change-form">Save</SaveButton>
       </ButtonsWrapper>
       <ConfirmWindow post={post} />

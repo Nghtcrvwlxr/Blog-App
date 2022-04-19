@@ -41,8 +41,8 @@ const initialState: BlogState = {
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid doloribus labore perspiciatis repudiandae voluptates. Accusamus aperiam, asperiores aut, dolore, dolorem ducimus eligendi excepturi labore laudantium nulla placeat quibusdam quod voluptas.",
     },
   ],
-  createWindowOpen: false,
-  confirmWindowOpen: false,
+  createWindowVisible: false,
+  confirmWindowVisible: false,
 };
 
 const blogSlice = createSlice({
@@ -58,8 +58,8 @@ const blogSlice = createSlice({
       }
       const newItem: BlogItem = {
         id: newId,
-        title: action.payload.title,
-        content: action.payload.content,
+        title: action.payload.title.trim(),
+        content: action.payload.content.trim(),
       };
       state.data.push(newItem);
     },
@@ -79,16 +79,7 @@ const blogSlice = createSlice({
       });
     },
     toggleModal(state, action: PayloadAction<string>) {
-      switch (action.payload) {
-        case "create":
-          state.createWindowOpen = !state.createWindowOpen;
-          break;
-        case "confirm":
-          state.confirmWindowOpen = !state.confirmWindowOpen;
-          break;
-        default:
-          break;
-      }
+      state[action.payload] = !state[action.payload];
     },
   },
 });

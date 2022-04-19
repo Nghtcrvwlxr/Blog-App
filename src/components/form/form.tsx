@@ -32,14 +32,21 @@ export const Form: FC<FormProps> = ({
   };
   const onFormSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    onSubmitFn(title, content);
-    setTitle("");
-    setContent("");
+    if (title.trim().length && content.trim().length) {
+      onSubmitFn(title, content);
+      setTitle("");
+      setContent("");
+    }
   };
 
   return (
     <AppForm className={className} id={id} onSubmit={onFormSubmit}>
-      <TitleInput required value={title} onChange={onInputChange} />
+      <TitleInput
+        required
+        value={title}
+        maxLength={300}
+        onChange={onInputChange}
+      />
       <PostContent required value={content} onChange={onContentChange} />
     </AppForm>
   );

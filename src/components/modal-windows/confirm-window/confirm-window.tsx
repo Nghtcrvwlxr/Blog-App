@@ -17,14 +17,14 @@ interface ConfirmWindowProps {
 export const ConfirmWindow: FC<ConfirmWindowProps> = ({ post }) => {
   const dispatch = useTypedDispatch();
   const isShown = useTypedSelector(
-    (state) => state.blogReducer.confirmWindowOpen
+    (state) => state.blogReducer.confirmWindowVisible
   );
 
   const navigate = useNavigate();
 
   const onDelete = () => {
     dispatch(deletePost(post.id));
-    dispatch(toggleModal("confirm"));
+    dispatch(toggleModal("confirmWindowVisible"));
     navigate("/");
   };
 
@@ -33,16 +33,18 @@ export const ConfirmWindow: FC<ConfirmWindowProps> = ({ post }) => {
   }
   return (
     <>
-      <Overlay modalType="confirm" onClickFn={toggleModal} />
+      <Overlay modalType="confirmWindowVisible" onClickFn={toggleModal} />
       <ModalWindow>
         <ModalWindowTitle>
           Are you sure you want to delete this post?
         </ModalWindowTitle>
         <ButtonsWrapper>
-          <DeclineButton onClickFn={() => dispatch(toggleModal("confirm"))}>
+          <DeclineButton
+            onClickFn={() => dispatch(toggleModal("confirmWindowVisible"))}
+          >
             No
           </DeclineButton>
-          <ConfirmButton onClickFn={() => onDelete()}>Yes</ConfirmButton>
+          <ConfirmButton onClickFn={onDelete}>Yes</ConfirmButton>
         </ButtonsWrapper>
       </ModalWindow>
     </>

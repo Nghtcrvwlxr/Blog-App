@@ -3,9 +3,9 @@ import { Link, useParams } from "react-router-dom";
 
 import styled from "styled-components";
 
-import { useTypedSelector } from "../../store/utils";
-import { Button } from "../buttons/button";
-import { PostDetails } from "../post-details/post-details";
+import { Button } from "../components/buttons/button";
+import { PostDetails } from "../components/post-details/post-details";
+import { useTypedSelector } from "../store/utils";
 
 export const PostPage: FC = () => {
   const { id } = useParams<{ id?: string }>();
@@ -51,5 +51,5 @@ const ReturnButton = styled(Button)`
   }
   @media (max-width: 425px) {
     width: 100px;
-  } ;
+  }
 `;
