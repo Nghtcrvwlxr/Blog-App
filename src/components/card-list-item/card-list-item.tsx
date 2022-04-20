@@ -56,6 +56,7 @@ const CardTitle = styled.h3`
   line-height: 18px;
   font-weight: 700;
   overflow: hidden;
+  white-space: pre-wrap;
 `;
 
 const CardBody = styled.div`
@@ -66,6 +67,7 @@ const CardBody = styled.div`
   border: 1px solid black;
   height: 100%;
   overflow: hidden;
+  white-space: pre-wrap;
 `;
 
 const SelectButton = styled(Link)`

@@ -23,27 +23,27 @@ export const CreatePostWindow: FC = () => {
     dispatch(toggleModal("createWindowVisible"));
   };
 
-  if (isShown) {
-    return (
-      <>
-        <Overlay onClickFn={toggleModal} modalType="createWindowVisible" />
-        <CreatePostModalWindow>
-          <ModalWindowTitle>Create new post</ModalWindowTitle>
-          <PostAddForm
-            id="add-form"
-            initialTitle=""
-            initialContent=""
-            onSubmitFn={onFormSubmit}
-          />
-          <ButtonsWrapper>
-            <CloseButton onClickFn={onClose}>Close</CloseButton>
-            <AddButton form="add-form">Add</AddButton>
-          </ButtonsWrapper>
-        </CreatePostModalWindow>
-      </>
-    );
+  if (!isShown) {
+    return null;
   }
-  return null;
+  return (
+    <>
+      <Overlay onClickFn={toggleModal} modalType="createWindowVisible" />
+      <CreatePostModalWindow>
+        <ModalWindowTitle>Create new post</ModalWindowTitle>
+        <PostAddForm
+          id="add-form"
+          initialTitle=""
+          initialContent=""
+          onSubmitFn={onFormSubmit}
+        />
+        <ButtonsWrapper>
+          <CloseButton onClickFn={onClose}>Close</CloseButton>
+          <AddButton form="add-form">Add</AddButton>
+        </ButtonsWrapper>
+      </CreatePostModalWindow>
+    </>
+  );
 };
 
 const CreatePostModalWindow = styled(ModalWindow)`

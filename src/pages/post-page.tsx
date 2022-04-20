@@ -7,8 +7,12 @@ import { Button } from "../components/buttons/button";
 import { PostDetails } from "../components/post-details/post-details";
 import { useTypedSelector } from "../store/utils";
 
+type Params = {
+  id?: string;
+};
+
 export const PostPage: FC = () => {
-  const { id } = useParams<{ id?: string }>();
+  const { id } = useParams<Params>();
   const postId = parseInt(id!, 10);
 
   const selectedPost = useTypedSelector((state) =>

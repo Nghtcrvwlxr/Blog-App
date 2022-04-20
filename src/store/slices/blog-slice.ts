@@ -70,13 +70,11 @@ const blogSlice = createSlice({
       const index = state.data.findIndex(
         (element) => element.id === action.payload.id
       );
-      state.data[index].title = action.payload.title;
-      state.data[index].content = action.payload.content;
+      state.data[index].title = action.payload.title.trim();
+      state.data[index].content = action.payload.content.trim();
     },
     deletePost(state, action: PayloadAction<number>) {
-      state.data = state.data.filter((item) => {
-        return item.id !== action.payload;
-      });
+      state.data = state.data.filter((item) => item.id !== action.payload);
     },
     toggleModal(state, action: PayloadAction<string>) {
       state[action.payload] = !state[action.payload];

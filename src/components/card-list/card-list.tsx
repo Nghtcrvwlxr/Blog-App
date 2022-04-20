@@ -8,8 +8,7 @@ import { CardListItem } from "../card-list-item/card-list-item";
 export const CardList = () => {
   const data = useTypedSelector((state) => state.blogReducer.data);
 
-  const elements = data.map((item) => {
-    const { id, title, content } = item;
+  const elements = data.map(({ id, title, content }) => {
     return <CardListItem key={id} id={id} title={title} content={content} />;
   });
 
